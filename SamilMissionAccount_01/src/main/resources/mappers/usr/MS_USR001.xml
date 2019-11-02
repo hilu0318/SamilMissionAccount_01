@@ -3,11 +3,25 @@
 	PUBLIC "-//mybatis.org/DTD Mapper 3.0/EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="con001">
-	<select id="iqryBasicCon001" resultType="hash">
+<mapper namespace="MS_USR001">
+	
+	<select id="connectTest" resultType="hash">
 	SELECT 'CONNECT' 	AS NAME
 	     , 35			AS AGE
 	     , 181.6		AS TALL 
 	  FROM DUAL
 	</select>
+	
+	<select id="iqryUsrBasic" resultType="hash">
+	SELECT USR_ID  			/* 사용자ID */
+		 , USR_PW  			/* 사용자비밀번호 */
+		 , USR_NM  			/* 사용자명 */
+		 , USR_PHN_NO1  	/* 휴대전화번호1 */
+		 , USR_PHN_NO2  	/* 휴대전화번호2 */
+		 , USR_PHN_NO3  	/* 휴대전화번호3 */
+		 , JOIN_APR_YN  	/* 가입승인여부 */
+	  FROM MS_USR001 	/* 사용자기본 */
+	 WHERE USR_ID = #{usr_id}
+	</select>
+	
 </mapper>

@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -20,14 +22,16 @@ public class TestController {
 	@Inject
 	private DataSource dataSource;
 	
-	//@Inject
-	//private SqlSessionFactory sessionFactory;
+	private static String namespace = "test";
+	
+	@Inject
+	private SqlSessionFactory sessionFactory;
 	
 	@Test
 	public void testControll() {
-		testStep01();
+		//testStep01();
 		//testStep02();
-		//testStep03();
+		testStep03();
 		//testStep04();
 	}
 	
@@ -47,17 +51,18 @@ public class TestController {
 		}
 	}
 	
-//	private void testStep03() {
-//		SqlSession session = sessionFactory.openSession();
-//		if(session == null) {
-//			System.out.println("Step3 : DB SqlSession Fail!!");
-//		}else {
-//			System.out.println("Step3 : DB SqlSession Success!!");
-//		}
-//	}
+	private void testStep03() {
+		SqlSession session = sessionFactory.openSession();
+		if(session == null) {
+			System.out.println("Step3 : DB SqlSession Fail!!");
+		}else {
+			System.out.println("Step3 : DB SqlSession Success!!");
+			System.out.println("value : " + session.selectOne(namespace + ".connectTest").toString());
+		}
+	}
 	
-//	private void testStep04() {
-//		//System.out.println(dao.iqryTest().toString());
-//	}
+	private void testStep04() {
+		//System.out.println(dao.iqryTest().toString());
+	}
 	
 }

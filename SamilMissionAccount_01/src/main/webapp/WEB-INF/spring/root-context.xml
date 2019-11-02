@@ -40,24 +40,24 @@
 		p:driverClassName="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" p:url="jdbc:log4jdbc:oracle:thin:@hilu0318.synology.me:1521:ORCLCDB"
 		p:username="hilu0318" p:password="hilu0318" />
 	-->
-	<!-- Step3 
+	<!-- Step3 --> 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/mybatis-config.xml" />
 		<property name="mapperLocations" value="classpath:/mappers/**/*.xml" />
 	</bean>
-	-->
-	<!-- Step4 
+	
+	<!-- Step4 --> 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</bean>
-	--> 
-	<!-- transaction 설정 
+	
+	<!-- transaction 설정 --> 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
-	-->
+	
 	<context:component-scan base-package="com.samil.sma.*" />
 </beans>
